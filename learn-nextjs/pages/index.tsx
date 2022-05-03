@@ -1,16 +1,30 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
+
+  const router = useRouter();
+
+  function goToDetailPage() {
+    router.push({
+      pathname: "/posts/[postId]",
+      query: {
+        postId: "123",
+        ref: "social",
+      },
+    })
+  }
   return (
     <div className={styles.container}>
       <Head>
         <title>Nextjs App</title>
         <meta name="description" content="Learn Nextjs with easy frontend" />
         <link rel="icon" href="/favicon.ico" />
-      </Head>		
+      </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
@@ -21,6 +35,16 @@ const Home: NextPage = () => {
           Get started by editing{" "}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
+
+        <Link href="/posts">
+          <a>Go to Post List</a>
+        </Link>
+        
+
+        <Link href="/about">
+          <a>Go to About</a>
+        </Link>
+        
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
